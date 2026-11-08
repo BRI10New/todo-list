@@ -2,11 +2,15 @@
 //and a button to submit the todo
 //later it will be used to edit the todo entry as well
 
-export default function FormComponetn ({id, title}: TodoCardProps) {
+import type { FormComponentProps } from "./TodoApp";
+
+export default function FormComponent ({title, handleFormOnChange, handleOnSubmit
+}: FormComponentProps) {
     return <div>
-        <form action ="">
+        <form onSubmit={handleOnSubmit}>
             <label htmlFor="title">Todo Title</label>
-            <input type="text" name="title" id="title" value={title} />
+            <input type="text" name="title" id="title" value={title} onChange={handleFormOnChange} />
+            <button>Submit</button>
         </form>
     </div>
 }

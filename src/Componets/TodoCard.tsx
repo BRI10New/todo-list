@@ -4,15 +4,30 @@
 //a button to edit this todo entry
 // a checkbox that will be used to check the entry if completed
 
-import type {TodoCardFunctions} from "./TodoApp";
+import type { TodoCardFunctions } from "./TodoApp";
 
-export default function TodoCard({checked, title}: TodoCardFunctions) {
-    return (<div>
-<input type="checkbox" name="checked" id="checked" checked={checked} 
-onChange={(e) => handleToCheck(e, id)} />
-<span>{title}</span>
-<button onClick={() => handleTodoDelete(id)}>Delete </button>
-<button>Edit</button>
-</div>
-);
+export default function TodoCard({
+  id,
+  checked,
+  title,
+  handleToCheck,
+  handleTodoDelete,
+  handleEditTodo,
+}: TodoCardFunctions) {
+  return (
+    <div>
+      <input
+        type="checkbox"
+        name="checked"
+        id={`checked-${id}`}
+        checked={checked}
+        onChange={(e) => handleToCheck(e, id)}
+      />
+      <span style={{ textDecoration: checked ? "line-through" : "none" }}>
+        {title}
+      </span>
+      <button onClick={() => handleEditTodo(id)}>Edit</button>
+      <button onClick={() => handleTodoDelete(id)}>Delete</button>
+    </div>
+  );
 }
